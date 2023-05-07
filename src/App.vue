@@ -1,58 +1,84 @@
 <template>
   <div id="app">
     <h1>Bids Vendor Chatbot</h1>
-    <h2>Trained using the following documents:</h2>
-    <ul>
-      <li v-for="(document, index) in documents" :key="index">{{ document }}</li>
-    </ul>
-    <div class="input-container">
-      <input
-        class="input-field"
-        v-model="prompt"
-        placeholder="Enter your prompt"
-      />
-      <button class="send-button" @click="promptChatbot" :disabled="loading">
-        {{ loading ? "Loading..." : "Send" }}
-      </button>
+    <div class="tabs">
+      <button class="tab-button" :class="{ active: activeTab === 'prompt' }" @click="activeTab = 'prompt'">Prompt Chatbot</button>
+      <button class="tab-button" :class="{ active: activeTab === 'addFile' }" @click="activeTab = 'addFile'">Files</button>
     </div>
-    <div class="response-container">
-      <div v-if="isPointForm" class="response">
-        <ul>
-          <li v-for="(point, index) in responsePoints" :key="index">{{ point }}</li>
-        </ul>
-      </div>
-      <div v-else class="response">
-        <p>{{ response }}</p>
-      </div>
+    <div v-show="activeTab === 'prompt'">
+      <PromptChatbot />
     </div>
-    <div class="add-file-section">
-      <h2>Add a new file</h2>
-      <div class="add-file-container">
-        <div class="add-file-inputs">
-          <input
-            class="input-field"
-            v-model="userName"
-            placeholder="Enter user name"
-          />
-          <input
-            class="input-field"
-            v-model="documentName"
-            placeholder="Enter document name"
-          />
-        </div>
-        <textarea
-          class="input-field textarea-field"
-          v-model="documentContent"
-          placeholder="Enter document content"
-        ></textarea>
-        <button class="send-button add-file-button" @click="addFile">
-          {{ fileLoading ? "Loading..." : "Add file" }}
-        </button>
-      </div>
+    <div v-show="activeTab === 'addFile'">
+      <File />
     </div>
   </div>
 </template>
 
-<script lang="ts" src="./App.ts"></script>
-<style src="./App.css"></style>
-```
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import PromptChatbot from "./components/PromptChatbot.vue";
+import File from "./components/FileComponent.vue";
+
+export default defineComponent({
+  components: {
+    PromptChatbot,
+    File,
+  },
+  setup() {
+    const activeTab = ref("prompt");
+
+    return {
+      activeTab,
+    };
+  },
+});
+</script>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+}
+
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.tab-button {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-right: 2px;
+}
+
+.tab-button:last-child {
+  margin-right: 0;
+}
+
+.tab-button:hover {
+  background-color: #ddd;
+}
+
+.tab-button.active {
+  background-color: #fff;
+  font-weight: bold;
+}
+
+</style>
