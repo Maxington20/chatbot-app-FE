@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h1,
+  h2 {
+    text-align: center;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .input-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .input-field {
+    padding: 0.5rem;
+    font-size: 1rem;
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+  }
+  
+  .send-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+    margin-left: 0.5rem;
+  }
+  
+  .send-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .response-container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .response {
+    text-align: left;
+    font-size: 1.1rem;
+  }
+
+  .add-file-section {
+    margin-top: 4rem;
+    padding: 2rem;
+    border-top: 2px solid #ccc;
+  }
+  
+  .add-file-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .add-file-inputs {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .textarea-field {
+    height: 150px;
+    resize: none;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  .add-file-button {
+    margin-top: 1rem;
+  }
