@@ -6,12 +6,12 @@
     <div class="content-container">
       <div class="prompt-chatbot">
         <div class="response-container">
-          <div v-if="isPointForm" class="response">
+          <div v-if="isPointForm" class="response" :class="{ 'has-response': response }">
             <ul>
               <li v-for="(point, index) in responsePoints" :key="index">{{ point }}</li>
             </ul>
           </div>
-          <div v-else class="response">
+          <div v-else class="response" :class="{ 'has-response': response }">
             <p>{{ response }}</p>
           </div>
         </div>
@@ -149,8 +149,9 @@ h2 {
 }
 
 .content-container {
-  flex-grow: 1;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   padding: 1rem 0 0;
 }
 
@@ -162,6 +163,7 @@ h2 {
 }
 
 .input-container {
+  align-self: flex-end;
   display: flex;
   justify-content: center;
   margin-top: 1rem;
@@ -194,10 +196,9 @@ h2 {
 }
 
 .response-container {
+  flex-grow: 1;
+  overflow-y: auto;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 .response {
@@ -217,5 +218,13 @@ h2 {
 .response ul {
   margin: 0;
   padding-left: 20px;
+}
+
+.response.has-response {
+  background-color: #f0f0f0;
+}
+
+.response:not(.has-response) {
+  background-color: white;
 }
 </style>
